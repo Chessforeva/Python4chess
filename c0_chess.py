@@ -2991,7 +2991,7 @@ if True:
 		print ("xexe");
 		
 		
-#Call for samples demontration function...
+#Call for samples demonstration function...
 c0_SAMPLES()
 
 
