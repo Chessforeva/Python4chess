@@ -13,7 +13,7 @@
 
 if True:
 
-	global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
+	global c0_position, c0_side, c0_sidemoves, c0_moving
 	global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 	global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 	global c0_start_FEN, c0_fischer, c0_fischer_cst
@@ -24,7 +24,6 @@ if True:
 	c0_side=1
 	c0_sidemoves=1
 	c0_moving=False
-	c0_waitmove=False
 
 	c0_wKingmoved = False
 	c0_bKingmoved = False
@@ -116,7 +115,7 @@ if True:
 	#----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	def c0_set_start_position( c0_mlist ):
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		global c0_start_FEN, c0_fischer, c0_fischer_cst
@@ -238,8 +237,8 @@ if True:
 	#----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	def c0_set_board_situation( c0_figlist, c0_wK, c0_wLR, c0_wRR, c0_w_00, c0_bK, c0_bLR, c0_bRR, c0_b_00, c0_elpas, c0_ml, c0_s ):
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
-		global c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
+		global c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		
@@ -365,8 +364,8 @@ if True:
 	#-------------------------------------------------
 	def c0_moveto(c0_from_at, c0_to_at, c0_draw):
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
-		global c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
+		global c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		
@@ -734,8 +733,8 @@ if True:
 	#-------------------------------------------------
 	def c0_is_attacked_king_before_move(c0_Qfrom_at, c0_Qto_at, c0_Qcolor):
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
-		global c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
+		global c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		
@@ -876,8 +875,8 @@ if True:
 	def c0_can_be_moved(c0_from_at, c0_to_at, c0_just_move_or_eat):
 
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
-		global c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
+		global c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		
@@ -1048,8 +1047,8 @@ if True:
 	#
 	def c0_DCN(c0_D7from_at, c0_Dvert_TX, c0_Dhoriz_TX, c0_Dcntx):
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
-		global c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
+		global c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 
@@ -1287,7 +1286,7 @@ if True:
 
 	def c0_PG_parseString(str):		# Parses own string for chess moves...
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		global c0_start_FEN, c0_fischer, c0_fischer_cst
@@ -1787,7 +1786,7 @@ if True:
 	def c0_get_FEN():
 
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		global c0_start_FEN, c0_fischer, c0_fischer_cst
@@ -2027,8 +2026,8 @@ if True:
 	#----------------------------------
 	def c0_put_to_PGN(c0_moves_str):		# To write moveslist to PGN string...
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
-		global c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
+		global c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		global c0_start_FEN, c0_fischer, c0_fischer_cst
@@ -2394,7 +2393,7 @@ if True:
 	def c0_fischer_cstl_move(c0_movz,c0_draw):
 
 		global c0_position, c0_sidemoves
-		global c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_fischer_cst
 		
@@ -2540,7 +2539,7 @@ if True:
 
 	def c0_AlphaBeta ( start_ply, ply_depth, alpha, beta ):		# Alpha-Beta simple search...
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		global c0_bestmove
@@ -2867,7 +2866,7 @@ if True:
 	def c0_SAMPLES():		# Just samples...
 
 
-		global c0_position, c0_side, c0_sidemoves, c0_moving, c0_waitmove
+		global c0_position, c0_side, c0_sidemoves, c0_moving
 		global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
 		global c0_lastmovepawn, c0_become, c0_become_from_engine, c0_moveslist
 		global c0_start_FEN
@@ -2879,7 +2878,6 @@ if True:
  
 
 		c0_side=1							# This side is white.   For black set -1
-		c0_waitmove=True					# Waiting for mouse drag...
 		c0_set_start_position("")			# Set the initial position... 
 	
 		# 1. Test for basic chess functions (ok)
@@ -2979,7 +2977,7 @@ if True:
 		
 		c0_Simple_search(1)
 		
-		print ( "Search deep 1: " + c0_bestmove )
+		print ( "Search depth 1: " + c0_bestmove )
 
 		# There is a short data openings database function
 		print("Openings, variants on request: e2e4...")
