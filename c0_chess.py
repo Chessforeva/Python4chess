@@ -7,11 +7,11 @@
 # Use it freely in Your scripts
 
 
-#class c0_chess:
+class c0_chess:
 
 # or just
 
-if True:
+#if True:
 
 	global c0_position, c0_side, c0_sidemoves, c0_moving
 	global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
@@ -1137,6 +1137,9 @@ if True:
 
 		c0_PGN_header=[]
 
+		PGN_text= c0_ReplaceAll( PGN_text,fromCharCode(10)," " )
+		PGN_text= c0_ReplaceAll( PGN_text,fromCharCode(13)," " )
+		PGN_text= c0_ReplaceAll( PGN_text,"   ", " " )
 		PGN_text= c0_ReplaceAll( PGN_text,"  ", " " )
 
 		str2=PGN_text
@@ -1159,6 +1162,8 @@ if True:
 
 			buf2= c0_ReplaceAll( buf2,"'","" )
 			buf2= c0_ReplaceAll( buf2,fromCharCode(34),"" )
+
+			# unicode symbol used html texts
 			buf2= c0_ReplaceAll( buf2,"–","-" )
 
 			buf3=buf2.upper()
@@ -1169,9 +1174,7 @@ if True:
 
 			at3 = IndexOf(buf3,"FEN ")
 			if(at3>=0 and at3<3):
-			
-				if( len(c0_start_FEN)==0 ): 
-					 c0_start_FEN=substrall(buf2,at3+4)
+				c0_start_FEN=substrall(buf2,at3+4)
 				c0_set_start_position("")
 			else:
 				at3 = IndexOf(buf3,"EVENT ")
@@ -1268,7 +1271,7 @@ if True:
 
 	#------------------------------ PGN parser on chess moves
 
-	def c0_get_moves_from_PGN(c0_PGN_str):		# Parses PGN moves from string variableown string for chess moves...
+	def c0_get_moves_from_PGN(c0_PGN_str):		# Parses PGN moves from string variable string for chess moves...
 
 		global PGN_text, c0_errflag, c0_PG_1
 
@@ -1515,7 +1518,6 @@ if True:
 
 						else:
 
-
 							move2=c0_from_Crafty_standard(move,color7)
 
 							if(len(move2)==0): 
@@ -1733,7 +1735,6 @@ if True:
 				c0_horiz72=charCodeAt(substr(c0_move,c0_cp7,1),0) - 96
 				c0_cp7-=1
 				c0_to_at72 = ToString(c0_vert72) + ToString(c0_horiz72)
-			
 						
 				if(c0_cp7>=0):
 
@@ -2990,6 +2991,6 @@ if True:
 		
 		
 #Call for samples demonstration function...
-c0_SAMPLES()
+#c0_SAMPLES()
 
 
