@@ -2991,6 +2991,6 @@ class c0_chess:
 		
 		
 #Call for samples demonstration function...
-#c0_SAMPLES()
+c0_SAMPLES()
 
 
