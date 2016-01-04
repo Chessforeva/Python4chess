@@ -1642,7 +1642,7 @@ if True:
 		else:
 
 			if(len(c0_move)>4 and (substr(c0_move,0,5)=="O-O-O" or substr(c0_move,0,5)=="0-0-0")):
-				print("a2")
+
 				if(c0_color47=="w"):
 
 					if(IndexOf(c0_position,"wKc1")<0 and c0_can_be_moved( "15","13",False) ): c0_ret7="e1c1[0]"
