@@ -11,7 +11,7 @@ class c0_chess:
 
 # or just
 
-#if True:
+if True:
 
 	global c0_position, c0_side, c0_sidemoves, c0_moving
 	global c0_wKingmoved, c0_bKingmoved, c0_wLRockmoved, c0_wRRockmoved, c0_bLRockmoved, c0_bRRockmoved, c0_w00, c0_b00
@@ -1325,7 +1325,7 @@ class c0_chess:
 
 		if( len(c0_start_FEN)>0 ): 
 			str= ( "{[FEN " + c0_start_FEN + "]}" + " " ) + str
-			if(c0_sidemoves<0): color7="b"
+			if( IndexOf(c0_start_FEN," b ") > 0 ): color7="b"
 		else:
 
 			c0_position = "wpa2,wpb2,wpc2,wpd2,wpe2,wpf2,wpg2,wph2,wRa1,wNb1,wBc1,wQd1,wKe1,wBf1,wNg1,wRh1,bpa7,bpb7,bpc7,bpd7,bpe7,bpf7,bpg7,bph7,bRa8,bNb8,bBc8,bQd8,bKe8,bBf8,bNg8,bRh8,"
@@ -1489,7 +1489,12 @@ class c0_chess:
 						if( IndexOf(("{([$"),pj1)>=0 ): break
 						if( substr(str,j,3)=="..." ): 
 							i=j+3
+							if( substr(str,i,1)!=" " ):
+							  str=substr(str,0,i)+" "+substrall(str,i);
+
+
 							break
+
 						j+=1
 
 
