@@ -41,7 +41,7 @@ if(True):
       ROOK = 6
       QUEEN = 7
 
-      CNODES = 0xFFFF
+      CNODES = 0xFFF
       HEUR = 9900000
       pval = [ 0, 100, 290, 0, 100, 310, 500, 950 ]
 
