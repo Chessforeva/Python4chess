@@ -26,7 +26,11 @@ if(True):
       #-- it takes time to prepare this python based chess engine for a game  
 
       VER = "OliThink 5.3.0 Java port to python"
-
+      #depth
+      sd = 8
+      #time in seconds
+      tm = 20
+      
       movemade = ""
 
       PAWN = 1
@@ -92,8 +96,6 @@ if(True):
       sabort = False
       noabort = False
 
-      sd = 32
-
       count = 0
       flags = 0
       mat_ = 0
@@ -124,7 +126,6 @@ if(True):
 
       Nonevar = [ 13, 43, 149, 519, 1809, 6311, 22027 ]
 
-      tm = 20
       mps = 0
       base = 5
       inc = 0
@@ -632,7 +633,6 @@ if(True):
         _parse_fen(sfen)
 
         engine = 1
-        sd = 32
 
       def LOW16(x):
 
@@ -2245,12 +2245,12 @@ if(True):
 
       def quiesce(ch,c,ply,alpha,beta):
 
-        global  pval, movelist, movenum, mat_, kingpos, q_nodes
+        global  pval, movelist, movenum, mat_, kingpos, q_nodes, sd
 
         best = -32000
         cmat = iif( c == 1, -mat_, mat_ )
 
-        if (ply == 63):
+        if (ply>=sd):
           return eval0(c) + cmat
 
         if (ch == 0):
@@ -2351,11 +2351,11 @@ if(True):
         global  PAWN, CNODES, HMASKB, HINVB, HMASKP, HINVP, hashDB, hashDP, hstack, BITC
         global  pawnfree, movelist, movenum, p_v, pvlength, kvalue, iter
         global  searchtime, maxtime, starttime, sabort, noabort, count, flags
-        global  mat_, kingpos, pieceb, colorb, killer, history, nodes_, Nonevar
+        global  mat_, kingpos, pieceb, colorb, killer, history, nodes_, Nonevar, sd
 
         pvlength[ply] = ply
 
-        if (ply == 63):
+        if (ply>=sd):
           return eval0(c) + iif(c != 0, -mat_, mat_)
 
         nodes_ += 1
@@ -2366,7 +2366,7 @@ if(True):
             sabort = True
 
         if (sabort):
-          return 0
+          return eval0(c) + iif(c != 0, -mat_, mat_)
 
         hp = HASHP(c)
         if (ply != 0  and  isDraw(hp, 1) != 0):
@@ -2733,11 +2733,11 @@ if(True):
         onmove ^= 1
         undoMove((mstack[cnt] >> 42), onmove)
 
-      def calc(sd,tm):
+      def calc():
 
         global  p_v, pvlength, kvalue, iter, searchtime, maxtime, starttime
         global  sabort, noabort, count, onmove, engine, kingpos
-        global  eval1, nodes_, q_nodes, mps, inc, post_
+        global  eval1, nodes_, q_nodes, mps, inc, post_, sd,tm
         global  movemade
 
         movemade = ""
@@ -2800,7 +2800,7 @@ if(True):
         global  onmove, engine, sd, tm
 
         engine = onmove
-        ex = calc(sd, tm)
+        ex = calc()
 
       def entermove(buf):
 
@@ -2816,7 +2816,7 @@ if(True):
         engine = onmove
 
         while(True):
-          ex = calc(sd, tm)
+          ex = calc()
           printboard()
           if( ex != 0 ):
             break
@@ -2899,8 +2899,6 @@ if(True):
       #-- starting
 
       init()
-      sd = 6
-      tm = 15
 
       #--entermove("e2e4")
       #--gomove()
