@@ -2213,7 +2213,7 @@ if(True):
 
         if (sf[0] < 7):
           #--Reduce the bonus for attacking king squares
-          katt = katt * int(sf[0]/7)
+          katt = int(katt * sf[0]/7)
 
         if (sf[0] < 2):
           sf[0] = 2
