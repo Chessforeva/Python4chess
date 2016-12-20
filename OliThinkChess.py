@@ -27,9 +27,9 @@ if(True):
 
       VER = "OliThink 5.3.0 Java port to python"
       #depth
-      sd = 8
+      sd = 7
       #time in seconds
-      tm = 20
+      tm = 12
       
       movemade = ""
 
@@ -926,8 +926,9 @@ if(True):
             occ = _rook0(f, board, 2)
             xray = _rook0(f, board, 3)
             index = key000(board, f)
-            rays[(f << 7) + index] = occ | move
-            rays[(f << 7) + index + 0x8000] = xray
+            k = (f << 7) + index
+            rays[k] = occ | move
+            rays[k + 0x8000] = xray
             i += 1
 
           f += 1
@@ -951,8 +952,9 @@ if(True):
             occ = _rook90(f, board, 2)
             xray = _rook90(f, board, 3)
             index = key090(board, f)
-            rays[(f << 7) + index + 0x2000] = occ | move
-            rays[(f << 7) + index + 0x8000 + 0x2000] = xray
+            k = (f << 7) + index + 0x2000
+            rays[k] = occ | move
+            rays[k + 0x8000] = xray
             i += 1
 
           f += 1
@@ -976,8 +978,9 @@ if(True):
             occ = _bishop45(f, board, 2)
             xray = _bishop45(f, board, 3)
             index = key045(board, f)
-            rays[(f << 7) + index + 0x4000] = occ | move
-            rays[(f << 7) + index + 0x8000 + 0x4000] = xray
+            k = (f << 7) + index + 0x4000
+            rays[k] = occ | move
+            rays[k + 0x8000] = xray
             i += 1
 
           f += 1
@@ -1001,9 +1004,9 @@ if(True):
             occ = _bishop135(f, board, 2)
             xray = _bishop135(f, board, 3)
             index = key135(board, f)
-            rays[(f << 7) + index + 0x6000] = occ | move
-            rays[(f << 7) + index + 0x8000 + 0x6000] = xray
-
+            k = (f << 7) + index + 0x6000
+            rays[k] = occ | move
+            rays[k + 0x8000] = xray
             i += 1
 
           f += 1
@@ -1228,7 +1231,23 @@ if(True):
         s += chr(ord("a") + (TO(m) % 8)) + chr(ord("1") + int(TO(m)/8))
         s += iif(PROM(m) != 0,  chr( ord( pieceChar[PROM(m)] ) +32 ), "" )
         return s
+	
+      def mvstrlng(m):
 
+        global  pieceChar
+
+        s = mvstr(m)
+
+        c = iif(PROM(m)!=0, PAWN,  identPiece(TO(m)))
+        p = s[0:2] + iif(CAP(m)!=0,"x","-") + s[2:4]
+        if c!=PAWN:
+         p = pieceChar[c] + p
+	
+        if PROM(m)!=0:
+         p = p + "="+s[4]
+	 
+        return p
+      
       def errprint(s):
 
         print("error: "+s)
@@ -2814,11 +2833,16 @@ if(True):
         global  onmove, engine, sd, tm
 
         engine = onmove
+        pgn = ""
 
         while(True):
           ex = calc()
+          mn = COUNT()
+          pgn = pgn + " " + iif(mn%2>0, str( int(mn/2)+1 )+".", "" ) + mvstrlng(p_v[0][0])
           printboard()
+
           if( ex != 0 ):
+            print(pgn)
             break
 
       def init():
