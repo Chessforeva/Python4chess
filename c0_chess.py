@@ -2709,7 +2709,6 @@ if True:
 # universal 30Kb code of most played chess openings
 # parameter moves:e2e4
 # returns next variants, strength, ECO code
-# Author: grozny0 [at] gmail.com, free code for any project
 # chessforeva.blogspot.com
 
 
