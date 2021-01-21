@@ -2710,7 +2710,7 @@ if True:
 # parameter moves:e2e4
 # returns next variants, strength, ECO code
 # Author: grozny0 [at] gmail.com, free code for any project
-# chessforeva.blogspot.com, chessforeva.appspot.com
+# chessforeva.blogspot.com
 
 
 	global c0_opn
