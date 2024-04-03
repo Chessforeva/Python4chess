@@ -967,7 +967,7 @@ if(True):
         return QSearch(beta - 1, beta, 0)
         
       
-      if (time.clock() - g_startTime > g_timeout):
+      if (time.perf_counter() - g_startTime > g_timeout):
         # -- Time cutoff
         g_searchValid = False
         return beta - 1
@@ -1510,7 +1510,7 @@ if(True):
       g_foundmove = 0
       
       g_finCnt = 0
-      g_startTime = time.clock()
+      g_startTime = time.perf_counter()
       
       while( i <= maxPly and g_searchValid ):
         tmp = AlphaBeta(i , 0, alpha, beta)

@@ -2380,7 +2380,7 @@ if(True):
         nodes_ += 1
         if ((nodes_ & CNODES) == 0):
 
-          consumed = time.clock() - starttime
+          consumed = time.perf_counter() - starttime
           if ( consumed > maxtime  or  (consumed > searchtime  and  (not noabort))):
             sabort = True
 
@@ -2775,14 +2775,14 @@ if(True):
         searchtime = int( (tm*10)/m2go ) + inc
         maxtime = iif(inc != 0, tm*3, tm*2)
 
-        starttime = time.clock()
+        starttime = time.perf_counter()
 
         iter = 1
         while(iter <= sd):
 
           noabort = False
           kvalue[iter] = search(ch, onmove, iter, 0, -32000, 32000, 1, 0)
-          t1 = (time.clock() - starttime)
+          t1 = (time.perf_counter() - starttime)
           if (sabort  and  pvlength[0] == 0):
             iter -= 1
             if(iter != 0):

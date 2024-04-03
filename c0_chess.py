@@ -2273,9 +2273,10 @@ if True:
 									c0_color479="w"
 									if(c0_color47=="w"): c0_color479="b"
 										
-									if( c0_is_mate_to_king( c0_color479, True ) ): c0_ret9+= "#"
-									else:
-										if( c0_is_check_to_king( c0_color479 ) ): c0_ret9+= "+"
+									if( c0_is_check_to_king( c0_color479 ) ):
+										if( c0_is_mate_to_king( c0_color479, True ) ): c0_ret9+= "#"
+										else:
+											c0_ret9+= "+"
 
 
 
