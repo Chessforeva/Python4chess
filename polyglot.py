@@ -244,16 +244,25 @@ def readBinFile(filename):
 
   k = 0;
   fh = open(filename, "rb");
+  key_pre = 0;
 
   while True:
     buf = fh.read(16);
     if not buf:
       break;
+    key = binNumb(buf,0,8);
     binBase[k]=binBaseObj();
-    binBase[k].key = binNumb(buf,0,8);
+    binBase[k].key = key;
     binBase[k].move = binNumb(buf,8,2);
     binBase[k].weight = binNumb(buf,10,2);
     binBase[k].learn = binNumb(buf,12,4);
+    
+    # verify book consistency
+    if(key_pre>key):
+      print("Error: The book is unsorted! Should be ordered ascending.");
+
+    key_pre = key;
+
     k = k + 1;
 
   fh = fh.close();
@@ -293,19 +302,22 @@ def getKey():
   #en-passant square
   if(c0_chess.c0_lastmovepawn>0):
     p = c0_chess.c0_lastmovepawn;
-    m=substrall( c0_chess.c0_moveslist, len(c0_chess.c0_moveslist)-4 );
+    u = fromCharCode(97+p-1);
+	
+    if(c0_chess.c0_sidemoves > 0):
+      m = u + "7" + u + "5";
+      cp = "wp";
+    else:
+      m = u + "2" + u + "4";
+      cp = "bp";
 
-    if( substr(m,0,1)==substr(m,2,1) and ( charCodeAt(m,0)-96==p ) ):
-      d=charCodeAt(m,1)-charCodeAt(m,3);
-      if(d==-2 or d==2):
-        if(d==2):
-          cp = "wp";
-        else:
-          cp = "bp";
-        l=fromCharCode(97+p-2)+substr(m,3,1);
-        r=fromCharCode(97+p)+substr(m,3,1);
-        if( IndexOf(s,l)>=0 or IndexOf(s,r)>=0 ):
-          k = k ^ Random64[772+p-1];
+    # no need look history
+    v2 = m[3];
+    l=cp + fromCharCode(97+p-2) + v2;
+    r=cp + fromCharCode(97+p) + v2;
+
+    if( IndexOf(s,l)>=0 or IndexOf(s,r)>=0 ):
+      k = k ^ Random64[772+p-1];
 
   #if white to move
   if c0_chess.c0_sidemoves > 0:
@@ -323,24 +335,29 @@ def lookupByKey(k):
   global binBase;
 
   n = len(binBase);
-  i = n>>1;
-  i2=0;
-  while i>=0 and i<n:
+  i = 0;
+
+  while (i<=n):
     i2 = i;
-    if k>binBase[i].key:
-      i = (n+i)>>1;
-      if i==i2:
-        i=i+1;
-    else:
-      if k<binBase[i].key:
-        n = i;
-        i = i>>1;
-      else:
-        while( i>0 and k==binBase[i-1].key ):
-          i=i-1;
-        return i;
-      if i==i2:
-        i=i-1;
+
+    if(k>binBase[i].key):
+      p = (n-i)>>1;
+      j = i+p+1;
+      while( p>=0 and (j>=n or (k<binBase[j].key ))):
+        p = (p>>1);
+        j = i+p+1;
+
+      i = j;
+
+    while( i>0 and (k==binBase[i-1].key ) ):
+      i = i - 1;
+
+    if(k == binBase[i].key):
+      return i;
+
+    if(i<=i2):
+      i = i2+1;
+
   return -1;
 
 
@@ -463,7 +480,7 @@ def Write2binfile(filename):
 print("\n\n\n\n Polybase...");
 
 readBinFile("book_small.bin");
-sample_getAllbyPos("e2e4");
+sample_getAllbyPos("e2e4c7c5");
 Write2binfile("book2_small.bin");
 
 

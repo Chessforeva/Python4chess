@@ -1317,14 +1317,22 @@ if True:
         if(not C.CASTLES):
             o += "-";
         else:
+            f = 1;
             if((C.CASTLES & cs_E1H1)==cs_E1H1):
                 o += "K";
+                f = 0;
             if((C.CASTLES & cs_E1A1)==cs_E1A1):
                 o += "Q";
+                f = 0;
             if((C.CASTLES & cs_E8H8)==cs_E8H8):
                 o += "k";
+                f = 0;
             if((C.CASTLES & cs_E8A8)==cs_E8A8):
                 o += "q";
+                f = 0;
+            if(f==1):
+                o += "-";
+                
         o += " ";
         if(not C.ENPSQ):
             o += "-";
